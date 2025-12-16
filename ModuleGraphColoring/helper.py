@@ -176,4 +176,4 @@ def run_csp():
             print(f"Đã lưu kết quả bước {step} vào result/step_{step}.png")
             prev_step = step
 
-    print("\nHoàn tất quá trình tô màu.")
+    print("\nHoàn tất quá trình tô màu <3")

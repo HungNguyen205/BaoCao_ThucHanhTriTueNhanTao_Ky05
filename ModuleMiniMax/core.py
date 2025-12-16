@@ -9,7 +9,7 @@ class CaroAI:
     """
     Lớp AI (Solver) sử dụng thuật toán Minimax kết hợp cắt tỉa Alpha-Beta.
     """
-    def __init__(self, depth=2):
+    def __init__(self, depth=3):
         """
         Khởi tạo AI.
 
