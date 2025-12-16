@@ -18,7 +18,7 @@ class Node:
         # Ưu tiên F nhỏ, nếu bằng thì ưu tiên H nhỏ
         return self.f < other.f or (self.f == other.f and self.h < other.h)
 
-    def __repr__(self):
+    def __repr__(self): # Hiển thị tọa độ
         return f"{self.position}"
 
 class Maze:
@@ -127,7 +127,7 @@ class MazeVisualizer:
         col_labels = ["Tọa độ", "G (Thực)", "H (Ước lượng)", "F (Tổng)", "Ghi chú"]
 
         if table_data:
-            # Màu nền cho bảng để dễ nhìn
+            # Màu nền cho bảng
             cell_colors = []
             for i in range(len(table_data)):
                 if i == 0 and current_node: cell_colors.append(["#f0f0f0"] * 5) # Dòng đầu xám nhạt

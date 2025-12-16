@@ -18,10 +18,10 @@ class CSPSolverLogic:
 
         # 1. Sắp xếp biến (Heuristic Bậc)
         # Đây là cột "Bậc" trong bảng
-        sorted_nodes = self.graph.get_sorted_nodes()
+        sorted_nodes = self.graph.get_sorted_nodes() # Sắp xếp đỉnh theo bậc giảm dần
 
-        assignment = {}
-        table_history = []
+        assignment = {} # Biến: Đỉnh -> Màu
+        table_history = [] # Lịch sử bảng từng bước
         # Cấu trúc row: [Bước, Đỉnh, Bậc, Màu Cấm, Màu Chọn]
 
         step = 0
@@ -33,12 +33,12 @@ class CSPSolverLogic:
             yield step, u, assignment, table_history
 
             # 2. Tìm ràng buộc (Màu bị cấm)
-            degree_u = self.graph.degrees[u]
-            forbidden_colors = set()
+            degree_u = self.graph.degrees[u] # Bậc của đỉnh u
+            forbidden_colors = set() # Tập màu bị cấm
 
-            for v in self.graph.adj[u]:
-                if v in assignment and assignment[v] != -1:
-                    forbidden_colors.add(assignment[v])
+            for v in self.graph.adj[u]: # Duyệt các láng giềng
+                if v in assignment and assignment[v] != -1: # Láng giềng đã được gán màu
+                    forbidden_colors.add(assignment[v]) # Thêm màu bị cấm
 
             # Format string màu cấm
             forbidden_str = str(sorted(list(forbidden_colors))).replace('[', '{').replace(']', '}')

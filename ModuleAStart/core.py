@@ -17,9 +17,9 @@ class AStarSolver:
         start_node.f = start_node.g + start_node.h #Khởi tạo và Công thức F = G + H
 
         open_list = []
-        heapq.heappush(open_list, start_node)
+        heapq.heappush(open_list, start_node) #Thêm node bắt đầu vào danh sách mở
 
-        closed_set = set()
+        closed_set = set() #Tập hợp các node đã duyệt
         g_score = {self.maze.start: 0}
 
         step_count = 0
@@ -34,8 +34,8 @@ class AStarSolver:
             neighbors_info = []
 
             # 2. Kiểm tra đích
-            if current.position == goal_node.position:
-                path = self._reconstruct_path(current)
+            if current.position == goal_node.position: # Nếu đã đến đích
+                path = self._reconstruct_path(current) # Tạo đường đi từ start đến goal
                 # Yield lần cuối
                 yield step_count, current, open_list, closed_set, [], path
                 return
@@ -47,21 +47,21 @@ class AStarSolver:
             for d in [(-1, 0), (0, -1), (1, 0), (0, 1)]:
                 neighbor_pos = (current.position[0] + d[0], current.position[1] + d[1])
 
-                if not self.maze.is_valid(neighbor_pos):
+                if not self.maze.is_valid(neighbor_pos): # Nếu không hợp lệ, bỏ qua
                     continue
 
                 if neighbor_pos in closed_set:
                     continue
 
-                new_g = current.g + 1
+                new_g = current.g + 1 # Chi phí di chuyển luôn là 1
                 h_val = self._heuristic(neighbor_pos, goal_node.position)
                 f_val = new_g + h_val
 
                 status = "Mới"
 
                 # Nếu đường đi mới tốt hơn hoặc chưa từng đến
-                if neighbor_pos not in g_score or new_g < g_score[neighbor_pos]:
-                    if neighbor_pos in g_score: status = "Cập nhật tốt hơn"
+                if neighbor_pos not in g_score or new_g < g_score[neighbor_pos]: # Nếu đường đi tốt hơn
+                    if neighbor_pos in g_score: status = "Cập nhật tốt hơn" # Đã từng đến nhưng đường đi tốt hơn
 
                     g_score[neighbor_pos] = new_g
                     neighbor = Node(neighbor_pos, current)
@@ -78,7 +78,7 @@ class AStarSolver:
         # Không tìm thấy đường
         yield step_count, None, [], closed_set, [], None
 
-    def _reconstruct_path(self, node):
+    def _reconstruct_path(self, node): # Tạo đường đi từ start đến goal
         path = []
         while node:
             path.append(node.position)

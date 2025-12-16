@@ -41,14 +41,14 @@ class CaroBoard:
             bool: True nếu người chơi này đã thắng, ngược lại False.
         """
         k = self.win_k
-        dirs = [(0, 1), (1, 0), (1, 1), (1, -1)]
+        dirs = [(0, 1), (1, 0), (1, 1), (1, -1)] # 4 hướng: ngang, dọc, chéo chính, chéo phụ
         for r in range(self.rows):
             for c in range(self.cols):
-                p = self.grid[r][c]
+                p = self.grid[r][c] #Giá trị ô hiện tại
                 if p == EMPTY: continue
                 for dr, dc in dirs:
-                    if (0 <= r + (k-1)*dr < self.rows) and (0 <= c + (k-1)*dc < self.cols):
-                        if all(self.grid[r + i*dr][c + i*dc] == p for i in range(k)):
+                    if (0 <= r + (k-1)*dr < self.rows) and (0 <= c + (k-1)*dc < self.cols): # Kiểm tra trong phạm vi
+                        if all(self.grid[r + i*dr][c + i*dc] == p for i in range(k)): # Kiểm tra k ô liên tiếp
                             return p
         return 0
 
@@ -193,7 +193,7 @@ def run_caro_final():
 
     # 2. Khởi tạo
     board = CaroBoard(rows, cols)
-    ai = CaroAI(depth=2)
+    ai = CaroAI(depth=3)
     CaroVisualizer.draw(board)
     CaroVisualizer.print_board(board)
 

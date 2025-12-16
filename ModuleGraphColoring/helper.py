@@ -3,9 +3,9 @@ import networkx as nx # Thư viện để tạo và thao tác với đồ thị
 import matplotlib.pyplot as plt # Thư viện để vẽ đồ thị và biểu đồ
 import matplotlib.patches as mpatches # Để vẽ các miếng vá màu
 import sys
-import os
+import os # Để quản lý đường dẫn
 from core import CSPSolverLogic
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..')) # Thêm thư mục cha vào sys.path để import module khác
 class GraphCSP:
     """Quản lý dữ liệu đồ thị."""
     def __init__(self, num_vertices):
@@ -14,13 +14,14 @@ class GraphCSP:
         self.edges = []
         self.degrees = {}
 
-    def add_constraint(self, u, v):
+    def add_constraint(self, u, v): # Thêm cạnh (ràng buộc)
         if u != v and v not in self.adj[u]:
             self.adj[u].append(v)
             self.adj[v].append(u)
             self.edges.append((u, v))
 
-    def generate_random_constraints(self, prob=0.4):
+    def generate_random_constraints(self, prob=0.4): # Tạo ràng buộc ngẫu nhiên
+        """Tạo ràng buộc ngẫu nhiên với xác suất prob."""
         for i in range(self.n):
             for j in range(i + 1, self.n):
                 if random.random() < prob:
