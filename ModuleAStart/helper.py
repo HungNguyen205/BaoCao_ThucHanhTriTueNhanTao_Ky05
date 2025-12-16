@@ -3,7 +3,7 @@ import random # Thư viện để tạo số ngẫu nhiên
 import numpy as np
 import matplotlib.colors as mcolors # Để tạo ra các bảng màu tùy chỉnh
 import matplotlib.pyplot as plt # Thư viện để vẽ đồ thị và biểu đồ
-import matplotlib.patches as mpatches # Để vẽ các miếng vá màu (như các ô vuông màu trong chú thích)
+import matplotlib.patches as mpatches # Để vẽ các miếng vá màu
 from matplotlib.lines import Line2D # Để vẽ các đường thẳng hoặc biểu tượng trong phần chú thích
 class Node:
     """Đại diện cho một ô."""
