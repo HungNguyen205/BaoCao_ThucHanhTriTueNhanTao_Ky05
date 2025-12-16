@@ -40,7 +40,7 @@ class CSPSolverLogic:
                 if v in assignment and assignment[v] != -1:
                     forbidden_colors.add(assignment[v])
 
-            # Format string cho đẹp: "{0, 2}"
+            # Format string màu cấm
             forbidden_str = str(sorted(list(forbidden_colors))).replace('[', '{').replace(']', '}')
             if not forbidden_colors: forbidden_str = "∅" # Rỗng
 
